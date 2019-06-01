@@ -1,3 +1,6 @@
 {
-  "autoend.autoendWithColon": true
+  "autoend.autoendWithColon": true,
+  "vue-format.break_attr_limit": 2,
+  "vue-format.html_indent_root": true,
+  "vue-format.attr_end_with_gt": false
 }

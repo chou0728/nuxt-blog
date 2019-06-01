@@ -27,6 +27,8 @@
     // Autoend
     "thousandtyone.autoend",
     // SCSS IntelliSense
-    "mrmlnc.vscode-scss"
+    "mrmlnc.vscode-scss",
+    // vue-format
+    "febean.vue-format"
   ]
 }
