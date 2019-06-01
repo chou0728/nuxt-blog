@@ -18,6 +18,7 @@
 			:title="item.title"
 			:previewText="item.previewText"
 			:thumbnail="item.thumbnail"
+			:is-admin="isAdmin"
 		/>
 	</section>
 </template>
@@ -27,6 +28,12 @@ import PostPreview from '@/components/Posts/PostPreview'
 export default {
 	components: {
 		PostPreview
+	},
+	props: {
+		isAdmin: {
+			type: Boolean,
+			default: false
+		},
 	},
 	data() {
 		return {
