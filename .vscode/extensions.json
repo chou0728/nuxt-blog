@@ -1,0 +1,32 @@
+{
+  // See http://go.microsoft.com/fwlink/?LinkId=827846
+  // for the documentation about the extensions.json format
+  "recommendations": [
+    // icons
+    "vscode-icons-team.vscode-icons",
+    // eslint
+    "dbaeumer.vscode-eslint",
+    // prettier
+    "esbenp.prettier-vscode",
+    //git history diff
+    "huizhou.githd",
+    //vetur
+    "octref.vetur",
+    //vue peek
+    "dariofuzinato.vue-peek",
+    // path intellisense
+    "christian-kohler.path-intellisense",
+    // bracket pair colorizer
+    "coenraads.bracket-pair-colorizer",
+    // Prettier - Code formatter
+    "esbenp.prettier-vscode",
+    // Pug beautify
+    "mrmlnc.vscode-pugbeautify",
+    // Manta's Stylus Supremacy
+    "thisismanta.stylus-supremacy",
+    // Autoend
+    "thousandtyone.autoend",
+    // SCSS IntelliSense
+    "mrmlnc.vscode-scss"
+  ]
+}

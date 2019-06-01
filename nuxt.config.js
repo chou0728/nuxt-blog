@@ -14,7 +14,8 @@ export default {
       { hid: 'description', name: 'description', content: pkg.description }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Open+Sans&display=swap' }
     ]
   },
 
@@ -56,6 +57,15 @@ export default {
     'bootstrap-vue/nuxt',
     '@nuxtjs/style-resources',
   ],
+
+  /*
+  ** bootstrapVue
+  */
+  bootstrapVue: {
+    bootstrapCSS: false,
+    bootstrapVueCSS: false
+  },
+
   /*
   ** Axios module configuration
   */
