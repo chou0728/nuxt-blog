@@ -1,3 +1,24 @@
+<template>
+  <div class="home-page">
+    <section class="intro">
+      <h1>接收最新前端技術!</h1>
+    </section>
+    <PostList />
+  </div>
+</template>
+
+<script>
+import PostList from '@/components/Posts/PostList'
+export default {
+  components: {
+    PostList
+  },
+  data() {
+    return {}
+  }
+}
+</script>
+
 <style lang="scss" scoped>
 .intro {
   height: 300px;
@@ -30,24 +51,3 @@
   }
 }
 </style>
-
-<template>
-  <div class="home-page">
-    <section class="intro">
-      <h1>接收最新前端技術!</h1>
-    </section>
-    <PostList />
-  </div>
-</template>
-
-<script>
-import PostList from '@/components/Posts/PostList'
-export default {
-  components: {
-    PostList
-  },
-  data() {
-    return {}
-  }
-}
-</script>
