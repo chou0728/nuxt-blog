@@ -1,4 +1,4 @@
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .posts-page {
 	display: flex;
 	justify-content: center;
@@ -7,5 +7,19 @@
 </style>
 
 <template>
-	<div class="posts-page"></div>
+	<div class="posts-page">
+		<PostList />
+	</div>
 </template>
+
+<script>
+import PostList from '@/components/Posts/PostList'
+export default {
+	components: {
+		PostList
+	},
+	data() {
+		return {}
+	}
+}
+</script>
