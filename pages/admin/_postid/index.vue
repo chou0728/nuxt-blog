@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import AdminPostForm from '@/components/Admin/AdminPostForm'
 
 export default {
@@ -14,16 +15,15 @@ export default {
     AdminPostForm
   },
   layout: 'admin',
-  data() {
-    return {
-      loadedPost: {
-        author: 'Eric',
-        title: 'My first post',
-        thumbnailLink: 'https://miro.medium.com/max/1838/1*h8d-4wYLN9wwiEsLAA_5yg.jpeg',
-        content: 'This is super amazing!'
-      }
-    }
-  },
+  asyncData(context) {
+    return axios.get(`https://nuxt-blog-0728.firebaseio.com/posts/${context.params.postId}.json`)
+      .then(res => {
+        return {
+          loadedPost: res.data
+        }
+      })
+      .catch(e => context.error(e))
+  }
 }
 </script>
 

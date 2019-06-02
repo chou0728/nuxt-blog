@@ -19,23 +19,18 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-  asyncData(context, callback) {
-    setTimeout(() => {
-      callback(null, {
-        loadedPost: {
-          id: '1',
-          title: `Post title (ID:${context.params.id})`, // context.params 如同之前的 this.$route.params
-          previewText: 'post content',
-          author: 'Eric',
-          updatedDate: new Date(),
-          content: 'test test',
-          thumbnail: 'https://cdn-images-1.medium.com/max/1200/1*EWDEUt0fqsmRgpYGFOOMew.png'
+  asyncData(context) {
+    return axios.get(`https://nuxt-blog-0728.firebaseio.com/posts/${context.params.id}.json`)
+      .then(res => {
+        return {
+          loadedPost: res.data
         }
       })
-    }, 1000)
-    
-  },
+      .catch(e => context.error(e))
+  }
 }
 </script>
 
