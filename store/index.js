@@ -17,11 +17,11 @@ const createStore = () => {
         // if(!process.client) console.log(context)
         return axios
           .get ('https://nuxt-blog-0728.firebaseio.com/posts.json')
-          .then (res => {
+          .then (result => {
             // 將firebase中的object轉成array
             const postsArray = [];
-            for (const key in res.data) {
-              postsArray.push ({...res.data[key], id: key});
+            for (const key in result.data) {
+              postsArray.push ({...result.data[key], id: key});
             }
             // 抓取完成後馬上寫進store中 (發起actions或是mutations都可)
             vuexContext.dispatch('setPosts', postsArray)

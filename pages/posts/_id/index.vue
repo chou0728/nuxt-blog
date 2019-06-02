@@ -24,9 +24,9 @@ import axios from 'axios'
 export default {
   asyncData(context) {
     return axios.get(`https://nuxt-blog-0728.firebaseio.com/posts/${context.params.id}.json`)
-      .then(res => {
+      .then(result => {
         return {
-          loadedPost: res.data
+          loadedPost: result.data
         }
       })
       .catch(e => context.error(e))

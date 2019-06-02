@@ -1,7 +1,7 @@
 <template>
   <div class="admin-post-page">
     <section class="update-form">
-      <AdminPostForm :post="loadedPost"/>
+      <AdminPostForm :post="loadedPost" @submit="onSubmitted" />
     </section>
   </div>
 </template>
@@ -15,11 +15,20 @@ export default {
     AdminPostForm
   },
   layout: 'admin',
+  methods: {
+    onSubmitted(editedPost) {
+      axios.put(`https://nuxt-blog-0728.firebaseio.com/posts/${this.$route.params.postId}.json`, editedPost)
+      .then(result => {
+        this.$router.push('/admin')
+      })
+      .catch(e => console.log(e))
+    }
+  },
   asyncData(context) {
     return axios.get(`https://nuxt-blog-0728.firebaseio.com/posts/${context.params.postId}.json`)
-      .then(res => {
+      .then(result => {
         return {
-          loadedPost: res.data
+          loadedPost: result.data
         }
       })
       .catch(e => context.error(e))
@@ -32,6 +41,7 @@ export default {
   width: 90%;
   margin: 20px auto;
 }
+
 @media (min-width: 768px) {
   .update-form {
     width: 500px;
