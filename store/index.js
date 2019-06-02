@@ -10,6 +10,13 @@ const createStore = () => {
       setPosts (state, posts) {
         state.loadedPosts = posts;
       },
+      addPost (state, createdpost) {
+        state.loadedPosts.push(createdpost)
+      },
+      editPost (state, editedPost) {
+        const postIndex = state.loadedPosts.findIndex(post => post.id === editedPost.id)
+        state.loadedPosts[postIndex] = editedPost
+      }
     },
     actions: {
       nuxtServerInit (vuexContext, context) {
@@ -24,13 +31,28 @@ const createStore = () => {
               postsArray.push ({...result.data[key], id: key});
             }
             // 抓取完成後馬上寫進store中 (發起actions或是mutations都可)
-            vuexContext.dispatch('setPosts', postsArray)
+            vuexContext.commit('setPosts', postsArray)
           })
           .catch (error => context.error (error));
       },
       setPosts (vuexContext, posts) {
         vuexContext.commit ('setPosts', posts);
       },
+      addPost (vuexContext, createdpost) {
+        return axios.post('https://nuxt-blog-0728.firebaseio.com/posts.json', createdpost)
+          .then(result => {
+            vuexContext.commit('addPost', {...createdpost, id: result.data.name })
+          })
+          .catch(error => console.log(error))
+      },
+      editPost (vuexContext, editedPost) {
+        return axios.put(`https://nuxt-blog-0728.firebaseio.com/posts/${editedPost.id}.json`, editedPost)
+        .then(result => {
+          vuexContext.commit('editPost', editedPost)
+        })
+        .catch(error => console.log(error))
+      },
+
     },
     getters: {
       loadedPosts (state) {

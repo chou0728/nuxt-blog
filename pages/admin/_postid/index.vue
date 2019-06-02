@@ -17,18 +17,16 @@ export default {
   layout: 'admin',
   methods: {
     onSubmitted(editedPost) {
-      axios.put(`https://nuxt-blog-0728.firebaseio.com/posts/${this.$route.params.postId}.json`, editedPost)
-      .then(result => {
+      this.$store.dispatch('editPost', editedPost).then(() => {
         this.$router.push('/admin')
       })
-      .catch(e => console.log(e))
     }
   },
   asyncData(context) {
     return axios.get(`https://nuxt-blog-0728.firebaseio.com/posts/${context.params.postId}.json`)
       .then(result => {
         return {
-          loadedPost: result.data
+          loadedPost: {...result.data, id: context.params.postId }
         }
       })
       .catch(e => context.error(e))
