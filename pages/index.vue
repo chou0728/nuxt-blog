@@ -37,7 +37,7 @@ export default {
           }
         }
       })
-    }, 1500)
+    }, 1000)
   }
 }
 </script>

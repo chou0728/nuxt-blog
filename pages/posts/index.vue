@@ -12,7 +12,7 @@ export default {
   },
   asyncData(context, callback) {
     setTimeout(() => {
-      callback(null, {
+      callback(null, { //callback 第一個參數為error，如果不需要使用則傳null就可
         loadedPosts: {
           '1': {
             id: '1',
@@ -34,7 +34,7 @@ export default {
           }
         }
       })
-    }, 1500)
+    }, 1000)
   }
 }
 </script>

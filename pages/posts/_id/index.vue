@@ -1,12 +1,12 @@
 <template>
   <div class="single-post-page">
     <section class="post">
-      <h1 class="post-title">title</h1>
+      <h1 class="post-title">{{ loadedPost.title }}</h1>
       <div class="post-details">
-        <div class="post-detail">最近更新日期: XXX</div>
-        <div class="post-detail">作者: XXX</div>
+        <div class="post-detail">最近更新日期: {{ loadedPost.updatedDate }}</div>
+        <div class="post-detail">作者: {{ loadedPost.author }}</div>
       </div>
-      <p class="post-content">內容</p>
+      <p class="post-content">{{ loadedPost.content }}</p>
       <button type="button" class="btn btn-primary">Primary</button>
     </section>
     <section class="post-feedback">
@@ -17,6 +17,27 @@
     </section>
   </div>
 </template>
+
+<script>
+export default {
+  asyncData(context, callback) {
+    setTimeout(() => {
+      callback(null, {
+        loadedPost: {
+          id: '1',
+          title: `Post title (ID:${context.params.id})`, // context.params 如同之前的 this.$route.params
+          previewText: 'post content',
+          author: 'Eric',
+          updatedDate: new Date(),
+          content: 'test test',
+          thumbnail: 'https://cdn-images-1.medium.com/max/1200/1*EWDEUt0fqsmRgpYGFOOMew.png'
+        }
+      })
+    }, 1000)
+    
+  },
+}
+</script>
 
 <style lang="scss" scoped>
 .single-post-page {
