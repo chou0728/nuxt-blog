@@ -35,7 +35,7 @@ export default {
 			default: false
 		},
 		posts: {
-			type: Object,
+			type: Array,
 			required: true
 		}
 	}
