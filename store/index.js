@@ -1,4 +1,5 @@
 import Vuex from 'vuex';
+import axios from 'axios';
 
 const createStore = () => {
   return new Vuex.Store ({
@@ -12,35 +13,20 @@ const createStore = () => {
     },
     actions: {
       nuxtServerInit (vuexContext, context) {
-        return new Promise ((resolve, reject) => {
-          // // 使用此方法後reload頁面可以看到在server端運行的結果
-          // if(!process.client) { 
-          //   console.log(context)
-          // }
-          setTimeout (() => {
-            vuexContext.commit ('setPosts', [
-              {
-                id: '1',
-                title: 'First Post',
-                previewText: 'This is our first post!',
-                thumbnail: 'https://cdn-images-1.medium.com/max/1200/1*EWDEUt0fqsmRgpYGFOOMew.png',
-              },
-              {
-                id: '2',
-                title: 'Second Post',
-                previewText: 'This is our second post!',
-                thumbnail: 'https://miro.medium.com/max/1838/1*h8d-4wYLN9wwiEsLAA_5yg.jpeg',
-              },
-              {
-                id: '3',
-                title: 'Third Post',
-                previewText: 'This is our third post!',
-                thumbnail: 'https://firebase.google.com/images/social.png',
-              },
-            ]);
-            resolve ();
-          }, 1000);
-        });
+        // 使用此方法後reload頁面可以看到在server端運行的結果
+        // if(!process.client) console.log(context)
+        return axios
+          .get ('https://nuxt-blog-0728.firebaseio.com/posts.json')
+          .then (res => {
+            // 將firebase中的object轉成array
+            const postsArray = [];
+            for (const key in res.data) {
+              postsArray.push ({...res.data[key], id: key});
+            }
+            // 抓取完成後馬上寫進store中 (發起actions或是mutations都可)
+            vuexContext.dispatch('setPosts', postsArray)
+          })
+          .catch (error => context.error (error));
       },
       setPosts (vuexContext, posts) {
         vuexContext.commit ('setPosts', posts);
