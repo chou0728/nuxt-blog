@@ -13,6 +13,10 @@ const createStore = () => {
     actions: {
       nuxtServerInit (vuexContext, context) {
         return new Promise ((resolve, reject) => {
+          // // 使用此方法後reload頁面可以看到在server端運行的結果
+          // if(!process.client) { 
+          //   console.log(context)
+          // }
           setTimeout (() => {
             vuexContext.commit ('setPosts', [
               {
