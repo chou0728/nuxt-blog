@@ -38,6 +38,8 @@ export default {
   styleResources: {
     scss: [
       'assets/scss/_variables.scss',
+      'assets/scss/_bootstrap.scss',
+      'assets/scss/_transition.scss'
     ]
   },
 
@@ -82,5 +84,21 @@ export default {
     */
     extend(config, ctx) {
     }
-  }
+  },
+  env: {
+    baseUrl: process.env.BASE_URL || 'https://nuxt-blog-0728.firebaseio.com'
+  },
+  
+  // https://nuxtjs.org/api/configuration-transition
+  layoutTransition: {
+    name: 'layout',
+    mode: 'out-in'
+  },
+  transition: {
+    name: 'fade',
+    mode: 'out-in'
+  },
+  // 根目錄，預設是/
+  // rootDir: '/',
+  
 }

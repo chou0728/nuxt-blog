@@ -23,7 +23,7 @@ const createStore = () => {
         // 使用此方法後reload頁面可以看到在server端運行的結果
         // if(!process.client) console.log(context)
         return axios
-          .get ('https://nuxt-blog-0728.firebaseio.com/posts.json')
+          .get (`${process.env.baseUrl}/posts.json`)
           .then (result => {
             // 將firebase中的object轉成array
             const postsArray = [];
@@ -39,14 +39,14 @@ const createStore = () => {
         vuexContext.commit ('setPosts', posts);
       },
       addPost (vuexContext, createdpost) {
-        return axios.post('https://nuxt-blog-0728.firebaseio.com/posts.json', createdpost)
+        return axios.post(`${process.env.baseUrl}/posts.json`, createdpost)
           .then(result => {
             vuexContext.commit('addPost', {...createdpost, id: result.data.name })
           })
           .catch(error => console.log(error))
       },
       editPost (vuexContext, editedPost) {
-        return axios.put(`https://nuxt-blog-0728.firebaseio.com/posts/${editedPost.id}.json`, editedPost)
+        return axios.put(`${process.env.baseUrl}/posts/${editedPost.id}.json`, editedPost)
         .then(result => {
           vuexContext.commit('editPost', editedPost)
         })
