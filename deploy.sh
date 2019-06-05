@@ -4,7 +4,7 @@
 set -e
 
 # 打包
-npm run generate
+npm run generate:gh-pages
 
 # cd 到打包後的dist目錄下 
 cd dist
